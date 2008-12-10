@@ -1,0 +1,68 @@
+== Where to get Vertebra
+
+The source code is always available via Git:
+
+  $ git clone git://github.com/engineyard/vertebra-dist.git
+  $ git submodule init
+  $ git submodule update
+
+When switching between branches you need to remember to update the
+submodules. So to checkout the 0.4.2 tag to a branch you'd do this:
+
+  $ git checkout -b 0.4.2 0.4.2
+  $ git submodule update
+
+Then when you went back to master you'd do this:
+
+  $ git checkout master
+  $ git submodule update
+
+== Dependencies
+
+The following dependencies are necessary to use this installer:
+
+ * expat (most systems have this)
+ * gcc (most systems have this, Macs need to install Xcode)
+ * iconv (glibc systems have this, only needed for ejabberd mod_irc)
+ * make (most systems have this, Macs need to install Xcode)
+ * openssl (most systems have this)
+ * ruby
+ * rubygems
+ * wget OR curl (this includes most Macs and Linux machines)
+ * zlib (most systems have this)
+
+== Developer Installation
+
+Vertebra has many moving parts, many of which you may or may not already have
+installed. The install.sh script that is provided will do its best to safely
+install everything you need to develop with vertebra.
+
+To just install everything:
+
+  $ sudo ./install.sh -a
+
+What it installs can be broken down into three categories: dependencies,
+vertebra libraries, and vertebra actors.
+
+In an attempt to not overwrite things that you may already have installed, the
+installer will attmept to install things in /opt/local/vertebra. It will,
+however, install rubygems using which ever gem command is on your PATH.
+
+==== Dependencies
+
+ * Erlang OTP -- If you already have the latest Erlang installed, then you can
+                 skip this part.
+
+ * ejabberd -- If you already have a running ejabberd server, read
+               docs/ejabberd for assistance with configuring it to work with
+               vertebra.
+
+==== Vertebra Libraries
+
+ * vertebra -- Core agent library for ruby.
+ * vertebra-erl -- Core agent library for erlang and core vertebra services.
+
+==== Vertebra Actors
+
+ * vertebra-gemtool -- Actor for managing ruby gems.
+ * vertebra-xen -- Actor for accessing Xen slice information.

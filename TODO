@@ -1,0 +1,5 @@
+* Implement vertebra-erl on top of natter.
+* Add error semantics to both librarires.
+* Add retry logic to both libraries.
+* Add duplicate suppression to both libraries.
+* gen_actor should authenticate with all resources in an op.

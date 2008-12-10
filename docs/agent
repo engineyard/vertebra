@@ -1,0 +1,21 @@
+== Configuring a Ruby Agent
+
+Once the vertebra gem is installed you can generate a configuration file like
+this:
+
+  $ vutil generate_config
+
+That will create /etc/vertebra/agent.yml, and it will make a backup if the file
+already exists.
+
+== Running a Ruby Agent
+
+In order to run the agent all you have to do is:
+
+  $ vagent start -c /etc/vertebra/agent.yml -d &
+
+Under Linux you can add this to init like this (as root):
+
+  # cat "vb:345:respawn:/usr/bin/vagent start -c /etc/vertebra/agent.yml" -d \
+    >> /etc/inittab
+  # telinit q

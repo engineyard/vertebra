@@ -1,0 +1,73 @@
+== Configuring ejabberd
+
+The standard ejabberd configuration works just fine with vertebra, however
+there are a few things that must be set up in order for the system to
+work. There are also some recommended configuration changes that will help the
+system run optimally.
+
+=== Configure Virtual Hosts
+
+By default this is configured as "localhost" if you want to change it, the line
+you're looking for looks like this:
+
+  {hosts, ["localhost"]}.
+
+Just change the list to contain whatever virtual hosts you want. You need to
+have a virtual host in that list in order for ejabberd to recognize JIDs at
+that host as local. So, in order to recognize both "foo@localhost" and
+"foo@example.com" you'd need:
+
+  {hosts, ["localhost", "example.com"]}.
+
+=== Vertebra JIDs
+
+You will need to create JIDs for every vertebra agent that is going to run,
+including for the core services Herault, Entrepot, and Cavalcade.
+
+You can either use the web control panel or the CLI tool. To do it via the CLI
+the command is:
+
+  $ ejabberdctl register <user> <domain> <password>
+
+=== Web Admin Access
+
+It is not required for vertebra, but it is very convenient to use the web-based
+control panel for ejabberd. The admin JID for the example is "admin@localhost".
+
+There is a section for declaring Access Control Lists (ACLs), add one that
+looks like this:
+
+  {acl, admin, {user, "admin", "localhost"}}.
+
+There is a section for declaring Access Rules, add one that looks like this:
+
+  {access, configure, [{allow, admin}]}.
+
+=== Traffic Shaper
+
+Ejabberd has a traffic shaper, and its good for an IM server. However, it
+drastically slows down the performance of Vertebra. It is recommended that the
+shaper be disabled for agent JIDs.
+
+The easy way to do this is to disable it altogether. Find the access rule for
+c2s_shaper and alter it to look like this:
+
+  {access, c2s_shaper, [{none, admin},
+                        {none, all}]}.
+
+If you do not want to disable it for everything, then create an ACL for the
+vertebra JIDs. You can provide specific JIDs, regular expressions, or globs to
+match JIDs. Here's an example:
+
+  {acl, vertebra, {user, "cavalcade, "localhost"}}.
+  {acl, vertebra, {user, "entrepot", "localhost"}}.
+  {acl, vertebra, {user, "herault", "localhost"}}.
+  %% ... more jids ...
+  {acl, vertebra, {user_regexp, "-agent$"}}.
+  {acl, vertebra, {user_glob, "agent*"}}.
+
+Then alter the c2s_shaper access rule to look like this:
+
+  {access, c2s_shaper, [{none, admin},
+                        {none, vertebra},
+                        {normal, all}]}.
