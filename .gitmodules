@@ -1,0 +1,15 @@
+[submodule "vertebra-doc"]
+	path = vertebra-doc
+	url = git@github.com:engineyard/vertebra-doc.git
+[submodule "vertebra-erl"]
+	path = vertebra-erl
+	url = git@github.com:engineyard/vertebra-erl.git
+[submodule "vertebra-rb"]
+	path = vertebra-rb
+	url = git@github.com:engineyard/vertebra-rb.git
+[submodule "vertebra-gem"]
+	path = vertebra-gem
+	url = git@github.com:engineyard/vertebra-gem.git
+[submodule "vertebra-xen"]
+	path = vertebra-xen
+	url = git@github.com:engineyard/vertebra-xen.git
