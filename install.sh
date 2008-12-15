@@ -4,7 +4,7 @@ set -e
 BASE="/opt/local/vertebra"
 EJABBERD=ejabberd-2.0.2
 ERLSOM=erlsom-1.2.1
-OTP_VERSION=R12B-4
+OTP_VERSION=R12B-5
 OTP_SRC=otp_src_$OTP_VERSION
 OTP_DOC=otp_doc_man_$OTP_VERSION
 
