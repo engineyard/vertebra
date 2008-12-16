@@ -2,14 +2,14 @@
 
 The source code is always available via Git:
 
-  $ git clone git://github.com/engineyard/vertebra-dist.git
+  $ git clone git://github.com/engineyard/vertebra.git
   $ git submodule init
   $ git submodule update
 
 When switching between branches you need to remember to update the
-submodules. So to checkout the 0.4.2 tag to a branch you'd do this:
+submodules. So to checkout the 0.3.0 tag to a branch you'd do this:
 
-  $ git checkout -b 0.4.2 0.4.2
+  $ git checkout -b 0.3.0 0.3.0
   $ git submodule update
 
 Then when you went back to master you'd do this:
@@ -52,7 +52,6 @@ however, install rubygems using which ever gem command is on your PATH.
 
  * Erlang OTP -- If you already have the latest Erlang installed, then you can
                  skip this part.
-
  * ejabberd -- If you already have a running ejabberd server, read
                docs/ejabberd for assistance with configuring it to work with
                vertebra.
