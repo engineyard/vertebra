@@ -13,3 +13,6 @@
 [submodule "vertebra-xen"]
 	path = vertebra-xen
 	url = git@github.com:engineyard/vertebra-xen.git
+[submodule "natter"]
+	path = natter
+	url = git@github.com:engineyard/natter.git
