@@ -1,0 +1,18 @@
+--- a/loudmouth/lm-message-node.c	2008-10-29 15:46:21.000000000 -0500
++++ b/loudmouth/lm-message-node.c	2008-12-19 12:54:43.000000000 -0600
+@@ -484,12 +484,13 @@
+ 
+ 	for (child = node->children; child; child = child->next) {
+ 		gchar *child_str = lm_message_node_to_string (child);
+-		g_string_append_c (ret, ' ');
++		/* g_string_append_c (ret, ' '); */
+ 		g_string_append (ret, child_str);
+ 		g_free (child_str);
+ 	}
+ 
+-	g_string_append_printf (ret, "</%s>\n", node->name);
++	/* g_string_append_printf (ret, "</%s>\n", node->name); */
++	g_string_append_printf (ret, "</%s>", node->name);
+ 	
+ 	return g_string_free (ret, FALSE);
+ }

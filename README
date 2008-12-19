@@ -19,17 +19,34 @@ Then when you went back to master you'd do this:
 
 == Dependencies
 
-The following dependencies are necessary to use this installer:
+We have provided a script that installs some dependencies in /opt/local/vertebra:
+
+ * Erlang OTP (R12B-5)
+ * ejabberd (2.0.2)
+ * erlsom (1.2.1)
+
+The following dependencies are not installed:
 
  * expat (most systems have this)
  * gcc (most systems have this, Macs need to install Xcode)
  * iconv (glibc systems have this, only needed for ejabberd mod_irc)
  * make (most systems have this, Macs need to install Xcode)
+ * glib (most linux systems have this, needed for loudmouth)
+ * loudmouth (see note below)
+ * loudmouth-ruby
  * openssl (most systems have this)
  * ruby
  * rubygems
  * wget OR curl (this includes most Macs and Linux machines)
  * zlib (most systems have this)
+
+=== Loudmouth
+
+As of this writing the latest released version of loudmouth is 1.4.3. That
+release has some behavior regarding whitespace that it emits in its XML that
+causes trouble when that same XML is parsed. We have submitted a patch, but it
+is not available in a released version, so it is included here as
+loudmouth-whitespace.patch.
 
 == Developer Installation
 
@@ -39,22 +56,11 @@ install everything you need to develop with vertebra.
 
 To just install everything:
 
-  $ sudo ./install.sh -a
+  $ ./deps.sh -a
+  $ ./configure && make && make install
 
 What it installs can be broken down into three categories: dependencies,
 vertebra libraries, and vertebra actors.
-
-In an attempt to not overwrite things that you may already have installed, the
-installer will attmept to install things in /opt/local/vertebra. It will,
-however, install rubygems using which ever gem command is on your PATH.
-
-==== Dependencies
-
- * Erlang OTP -- If you already have the latest Erlang installed, then you can
-                 skip this part.
- * ejabberd -- If you already have a running ejabberd server, read
-               docs/ejabberd for assistance with configuring it to work with
-               vertebra.
 
 ==== Vertebra Libraries
 
@@ -65,3 +71,8 @@ however, install rubygems using which ever gem command is on your PATH.
 
  * vertebra-gemtool -- Actor for managing ruby gems.
  * vertebra-xen -- Actor for accessing Xen slice information.
+
+== Bugs
+
+Currently there is an intermittent segfault in the ruby agent library. It seems
+to be related to the loudmouth-ruby bindings.
