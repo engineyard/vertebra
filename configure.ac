@@ -14,5 +14,5 @@ AC_PATH_PROG(RAKE, rake)
 
 # Output
 AC_CONFIG_FILES([Makefile])
-AC_CONFIG_SUBDIRS([natter vertebra-erl])
+AC_CONFIG_SUBDIRS([natter vertebra-erl vertebra-doc])
 AC_OUTPUT
