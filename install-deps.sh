@@ -14,19 +14,16 @@ export PATH="${BASE}/bin:${BASE}/sbin:${PATH}"
 
 if [ -z "$*" ] ; then
   echo "USAGE: $0 [-r | -e | -j | -l]"
-  echo "  -r : Install Vertebra Ruby Core Components"
+  echo "  -a : Install everything"
   echo "  -e : Install Erlang OTP"
   echo "  -j : Install ejabberd Server"
+  echo "  -r : Install RubyGems"
   echo "  -x : Install erlsom"
-  echo "  -l : Install Vertebra Erlang Core Components"
-  echo "  -E : Install all Erlang bits"
-  echo "  -C : Install configuration files"
-  echo "  -d : Prepare Vertebra Documentation"
-  echo "  -a : Install everything"
   echo ""
-  echo "NOTE: $0 depends on a working build environment, wget OR curl, ruby,"
-  echo "      and rubygems"
-  echo "NOTE: We currently only install the Erlang stuff in ${BASE}"
+  echo "NOTE: $0 depends on a working build environment,"
+  echo "      wget OR curl, ruby, and rubygems."
+  echo "NOTE: We currently only install the Erlang stuff in ${BASE},"
+  echo "      but gems are installed normally."
   exit 1
 fi
 
@@ -94,28 +91,6 @@ detect_opt () {
   readonly ${VAR}="${BIN}"
 }
 
-# Gets a git repository, currently unused
-get_repo () {
-  local REPO=$1
-  local ORIGIN
-  local BARENAME=$(basename ${REPO} .git)
-  echo "Cloning git repository (${REPO})..."
-  if [ -d "${BARENAME}/.git" ] ; then
-    pushd "${BARENAME}"
-    ORIGIN="$(git config remote.origin.url)"
-    popd
-    if [ "${REPO}" == "${ORIGIN}" ] ; then
-      echo "Reusing existing repository (expected ${REPO})..."
-      return
-    else
-      echo "ERROR: Unrecognized repository (expected ${REPO})..."
-      exit 1
-    fi
-  else
-    git clone ${REPO}
-  fi
-}
-
 # Installs a Gem
 install_gem () {
   local GM
@@ -178,20 +153,6 @@ detect_erl () {
   fi
 }
 
-detect_docs () {
-  detect GRAPHDOT dot "GraphViz: dot"
-  detect GRAPHNEATO neato "GraphViz: neato"
-  detect GRAPHTWOPI twopi "GraphViz: twopi"
-  detect TEXPDFLATEX pdflatex "LaTeX: pdflatex"
-  detect TEXMAKEIDX makeindex "LaTeX: makeindex"
-  return 1
-}
-
-detect_verl () {
-  # Right now we just build and run locally, so we always want to build/install.
-  return 1
-}
-
 detect_ejd () {
   local CTL=$(which ejabberdctl)
   return $([ -x "$CTL" ])
@@ -225,20 +186,6 @@ build_erl () {
   popd
 }
 
-build_docs () {
-  echo Building Vertebra Docs...
-  make -C vertebra-doc clean
-  make -C vertebra-doc
-}
-
-build_verl () {
-  pushd vertebra-erl
-  autoconf
-  ./configure --prefix=$BASE
-  make
-  popd
-}
-
 build_ejd () {
   echo Building Erlang Jabber Daemon...
   fetch_file http://www.process-one.net/downloads/ejabberd/2.0.2/$EJABBERD.tar.gz
@@ -267,15 +214,9 @@ build_erlsom () {
 }
 
 install_rb () {
-  echo Installing Vertebra Ruby Components...
+  echo Installing RubyGems...
 
   install_gem rspec facets xmpp4r open4 thor rr hoe
-
-  for dir in vertebra-rb vertebra-gem vertebra-xen; do
-      pushd $dir
-      rake install
-      popd
-  done
 }
 
 install_erl () {
@@ -285,18 +226,6 @@ install_erl () {
   popd
 
   tar zxvf $OTP_DOC.tar.gz -C $BASE/lib/erlang
-}
-
-install_docs (){
-  echo TODO: Install Vertebra Documentation
-}
-
-install_verl () {
-  echo Installing Vertebra Erlang Components...
-
-  pushd vertebra-erl
-  make install
-  popd
 }
 
 install_ejd () {
@@ -368,7 +297,7 @@ do_configure () {
 
 # Command Line Handlers
 do_rb () {
-  do_part rb "Vertebra Ruby Components"
+  do_part rb "Ruby Gems"
 }
 
 do_erl () {
@@ -381,21 +310,6 @@ do_ejd () {
 
 do_erlsom () {
   do_part erlsom "erlsom"
-}
-
-do_verl () {
-  do_part verl "Vertebra Erlang Components"
-}
-
-do_erlang () {
-  do_erl
-  do_ejd
-  do_erlsom
-  do_verl
-}
-
-do_docs () {
-  do_part docs "Vertebra Documentation"
 }
 
 if [ "$1" == "-r" ] ; then
@@ -418,29 +332,10 @@ if [ "$1" == "-x" ] ; then
   exit 0
 fi
 
-if [ "$1" == "-l" ] ; then
-  do_verl
-  exit 0
-fi
-
-if [ "$1" == "-C" ] ; then
-  do_configure
-  exit 0
-fi
-
-if [ "$1" == "-E" ] ; then
-  do_erlang
-  exit 0
-fi
-
-if [ "$1" == "-d" ] ; then
-  do_docs
-  exit 0
-fi
-
 if [ "$1" == "-a" ] ; then
+  do_ejd
+  do_erl
+  do_erlsom
   do_rb
-  do_erlang
-  do_configure
   exit 0
 fi
