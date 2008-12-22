@@ -333,8 +333,8 @@ if [ "$1" == "-x" ] ; then
 fi
 
 if [ "$1" == "-a" ] ; then
-  do_ejd
   do_erl
+  do_ejd
   do_erlsom
   do_rb
   exit 0
