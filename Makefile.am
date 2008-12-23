@@ -1,7 +1,14 @@
 SUBDIRS = natter vertebra-erl
 DIST_SUBDIRS = $(SUBDIRS) vertebra-doc
+EXTRA_DIST = vertebra-rb vertebra-gem vertebra-xen
 
 rake = cd $(srcdir)/$(1) && $(RAKE) $(2)
+
+dist-hook: clean = rm -rf $(distdir)/$(1)/pkg $(distdir)/$(1)/.git*
+dist-hook:
+	$(call clean,vertebra-gem)
+	$(call clean,vertebra-rb)
+	$(call clean,vertebra-xen)
 
 .PHONY: vertebra-doc
 
