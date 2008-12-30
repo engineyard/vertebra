@@ -216,7 +216,7 @@ build_erlsom () {
 install_rb () {
   echo Installing RubyGems...
 
-  install_gem rspec facets xmpp4r open4 thor rr hoe
+  install_gem rspec open4 thor rr hoe
 }
 
 install_erl () {

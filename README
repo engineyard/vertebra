@@ -3,6 +3,7 @@
 The source code is always available via Git:
 
   $ git clone git://github.com/engineyard/vertebra.git
+  $ cd vertebra
   $ git submodule init
   $ git submodule update
 
@@ -19,11 +20,21 @@ Then when you went back to master you'd do this:
 
 == Dependencies
 
-We have provided a script that installs some dependencies in /opt/local/vertebra:
+We have provided a script (deps.sh) that installs some dependencies in
+/opt/local/vertebra:
 
  * Erlang OTP (R12B-5)
  * ejabberd (2.0.2)
  * erlsom (1.2.1)
+
+The script also installs the following gems using the gem command found on your
+PATH:
+
+ * rspec
+ * open4
+ * thor
+ * rr
+ * hoe
 
 The following dependencies are not installed:
 
@@ -48,19 +59,20 @@ causes trouble when that same XML is parsed. We have submitted a patch, but it
 is not available in a released version, so it is included here as
 loudmouth-whitespace.patch.
 
-== Developer Installation
+== Installation
 
-Vertebra has many moving parts, many of which you may or may not already have
-installed. The install.sh script that is provided will do its best to safely
-install everything you need to develop with vertebra.
+If you are installing from git you need to run this command to set up the build
+system:
 
-To just install everything:
+  $ autoreconf --install && autoreconf
+
+Then to install everything:
 
   $ ./deps.sh -a
   $ ./configure && make && make install
 
-What it installs can be broken down into three categories: dependencies,
-vertebra libraries, and vertebra actors.
+What is installed can be broken down into three categories: vertebra libraries,
+and vertebra actors.
 
 ==== Vertebra Libraries
 
