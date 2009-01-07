@@ -1,0 +1,32 @@
+== Setting Up Your Environment
+
+Currently, the integration tests require the vertebra configuration files to be
+installed in order to run. The sample config files provided with herault,
+entrepot and cavalcade in the vertebra-erl projects are set up for the
+integration tests.
+
+The simplest way to install those config files is to just install Vertebra:
+
+  $ ./configure && make && make install
+
+In addition to the config files, you will need a working instance of ejabberd
+(deps.sh can install it for you). You will need to configure the following
+users:
+
+JID                              PASSWORD
+-------------------------        --------
+admin@localhost                  any - your choice
+herault@localhost                "testing"
+rd00-n00@localhost               "testing"
+rd00-s00000@localhost            "testing"
+vertebra-client@localhost        "testing"
+cavalcade@localhost              "testing"
+entrepot@localhost               "testing"
+
+== Running Integration Tests
+
+Currently the integration tests live in the vertebra-rb project. If everything
+has been set up then all you have to do to run them is:
+
+ $ cd vertebra-rb
+ $ rake integration
