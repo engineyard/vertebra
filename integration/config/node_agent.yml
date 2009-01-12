@@ -1,0 +1,15 @@
+jid: rd00-n00@localhost/agent
+password: testing
+use_drb: true
+drb_port: 10394
+debug: true
+jabber_debug: false
+log_path: /tmp/node_agent.log
+pid_path: /tmp/node_agent.pid
+herault_jid: herault@localhost/herault
+actors:
+ - mock_actor/actor
+default_resources:
+ - /cluster/rd00
+ - /node/0
+test_mode: true

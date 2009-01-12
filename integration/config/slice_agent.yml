@@ -1,0 +1,16 @@
+jid: rd00-s00000@localhost/agent
+password: testing
+use_drb: true
+drb_port: 10393
+debug: true
+jabber_debug: true
+log_path: /tmp/slice_agent.log
+pid_path: /tmp/slice_agent.pid
+herault_jid: herault@localhost/herault
+actors:
+ - vertebra-gemtool/actor
+ - mock_actor/actor
+default_resources:
+ - /cluster/rd00
+ - /slice/0
+test_mode: true
