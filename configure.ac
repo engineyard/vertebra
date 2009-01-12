@@ -13,6 +13,10 @@ AC_ARG_VAR(RAKE, The path to the rake program)
 AC_PATH_PROG(RAKE, rake)
 
 # Output
+AC_ARG_ENABLE(doc, AC_HELP_STRING([--enable-doc], [configure vertebra-doc]),
+              [if test "$enable_doc" != no; then
+                 AC_CONFIG_SUBDIRS([vertebra-doc])
+               fi])
 AC_CONFIG_FILES([Makefile])
-AC_CONFIG_SUBDIRS([natter vertebra-erl vertebra-doc])
+AC_CONFIG_SUBDIRS([natter vertebra-erl])
 AC_OUTPUT
