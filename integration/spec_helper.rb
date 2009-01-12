@@ -90,12 +90,13 @@ class ErlangAgent
   attr_reader :app, :config, :erlang_app, :node, :script
 
   def initialize(name, opts = {})
-    lib = opts[:lib] || File.expand_path(File.join(File.dirname(__FILE__), '..'))
+    mydir = File.dirname(__FILE__)
+    lib = opts[:lib] || File.expand_path("#{mydir}/..")
     @app = opts[:app] || name.to_s
     @erlang_app = opts[:erlang_app] || name.to_s
     @node = opts[:node] || "#{name}@localhost"
     @script = File.expand_path("#{lib}/vertebra-erl/bin/vertebractl")
-    @config = File.expand_path("#{lib}/vertebra-erl/conf/vertebractl.dev.conf")
+    @config = File.expand_path("#{mydir}/config/vertebractl.conf")
     raise "#{@script} does not exist" unless File.exist? @script
   end
 
