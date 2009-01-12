@@ -5,7 +5,7 @@ Spec::Rake::SpecTask.new("integration") do |t|
   t.spec_opts = ['--format', 'specdoc', '--colour']
   # TODO: Remove the exclude once the framework issues that cause those specs
   # to hang get resolved.
-  t.spec_files = FileList['**/*_spec.rb'].exclude('agent_interaction_spec.rb')
+  t.spec_files = FileList["#{File.dirname(__FILE__)}/**/*_spec.rb"].exclude('agent_interaction_spec.rb')
 end
 
 task :default => :integration
