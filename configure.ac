@@ -1,6 +1,6 @@
 # -*- Autoconf -*-
 AC_PREREQ(2.61)
-AC_INIT(vertebra, 0.3.0)
+AC_INIT(vertebra, 0.4.0)
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 #AC_CONFIG_SRCDIR([src/vertebractl.in])
 
