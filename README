@@ -53,11 +53,17 @@ The following dependencies are not installed:
 
 === Loudmouth
 
-As of this writing the latest released version of loudmouth is 1.4.3. That
-release has some behavior regarding whitespace that it emits in its XML that
-causes trouble when that same XML is parsed. We have submitted a patch, but it
-is not available in a released version, so it is included here as
-loudmouth-whitespace.patch.
+As of this writing the latest released version of loudmouth is 1.4.3. This
+version of the library results in segmentation faults when used with
+Vertebra. The latest Engine Yard fork of loudmouth is much more stable. It can
+be found at:
+
+  git://github.com/engineyard/loudmouth.git
+
+Similarly, there have been fixes to the loudmouth-ruby bindings, which can be
+found at:
+
+  git://github.com/engineyard/loudmouth-ruby.git
 
 == Installation
 
