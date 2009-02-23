@@ -14,3 +14,4 @@ install-sh
 ltmain.sh
 missing
 .DS_Store
+*.dump
