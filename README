@@ -8,9 +8,9 @@ The source code is always available via Git:
   $ git submodule update
 
 When switching between branches you need to remember to update the
-submodules. So to checkout the 0.3.0 tag to a branch you'd do this:
+submodules. So to checkout the 0.4.0 tag to a branch you'd do this:
 
-  $ git checkout -b 0.3.0 0.3.0
+  $ git checkout -b v0.4.0 0.4.0
   $ git submodule update
 
 Then when you went back to master you'd do this:
@@ -53,17 +53,17 @@ The following dependencies are not installed:
 
 === Loudmouth
 
-As of this writing the latest released version of loudmouth is 1.4.3. This
-version of the library results in segmentation faults when used with
-Vertebra. The latest Engine Yard fork of loudmouth is much more stable. It can
-be found at:
+The ruby agent library requires the latest versions of both the loudmouth
+library and the loudmouth-ruby bindings in order to work properly.
 
-  git://github.com/engineyard/loudmouth.git
+As of this writing the latest version of loudmouth is 1.5.0. It is available
+at:
 
-Similarly, there have been fixes to the loudmouth-ruby bindings, which can be
-found at:
+  http://engineyard.github.com/loudmouth/download/loudmouth-1.5.0.tar.gz
 
-  git://github.com/engineyard/loudmouth-ruby.git
+Similarly, the latest version of the bindings is 0.2.0. They are available at:
+
+  http://engineyard.github.com/loudmouth-ruby/download/loudmouth-ruby-0.2.0.tar.gz
 
 == Installation
 
@@ -89,8 +89,3 @@ and vertebra actors.
 
  * vertebra-gemtool -- Actor for managing ruby gems.
  * vertebra-xen -- Actor for accessing Xen slice information.
-
-== Bugs
-
-Currently there is an intermittent segfault in the ruby agent library. It seems
-to be related to the loudmouth-ruby bindings.
