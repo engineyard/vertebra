@@ -19,6 +19,6 @@ require File.join(File.dirname(__FILE__), 'spec_helper')
 
 describe 'Cavalcade' do
   it 'should be tested' do
-    false.should be_true
+    pending 'write some tests'
   end
 end
