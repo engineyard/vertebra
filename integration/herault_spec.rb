@@ -21,6 +21,7 @@ require 'vertebra/client_api'
 include Vertebra
 
 describe 'Herault' do
+  include Vertebra::Utils
 
   before(:all) do
     throw "ejabberd server must be running" unless EJABBERD.is_running?
@@ -54,7 +55,7 @@ describe 'Herault' do
   end
 
   it 'should advertise and unadvertise' do
-    resource = res("/foo/bar")
+    resource = resource("/foo/bar")
     # Make sure herault doesn't have any advertising already there for this resource.
     @api.advertise_op([resource], 0)
 
@@ -66,16 +67,16 @@ describe 'Herault' do
   end
 
   it 'should discover all resources' do
-    @api.advertise_op(res('/foo'))
+    @api.advertise_op(resource('/foo'))
     warm_up do
-      result = @api.discover(res('/'))['jids'].size.should == 1
+      result = @api.discover(resource('/'))['jids'].size.should == 1
     end
   end
 
   it 'should expire resources' do
-    @api.unadvertise_op(res('/foo'))
+    @api.unadvertise_op(resource('/foo'))
     warm_up do
-      @api.discover(res('/'))['jids'].size.should == 0
+      @api.discover(resource('/'))['jids'].size.should == 0
     end
   end
 end

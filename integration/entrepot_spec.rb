@@ -21,6 +21,7 @@ require 'vertebra/client_api'
 include Vertebra
 
 describe 'Entrepot' do
+  include Vertebra::Utils
 
   before(:all) do
     throw "ejabberd server must be running" unless EJABBERD.is_running?
@@ -55,10 +56,10 @@ describe 'Entrepot' do
 
   ENTREPOT_JID = 'entrepot@localhost/entrepot'
 
-  VALUE1 = {'key' => {'cluster' => res('/cluster/42')},
+  VALUE1 = {'key' => {'cluster' => Utils.resource('/cluster/42')},
             'value' => {'foo' => 'bar'}}
-  VALUE2 = {'key' => {'cluster' => res('/cluster/42'),
-                      'slice' => res('/slice/15')},
+  VALUE2 = {'key' => {'cluster' => Utils.resource('/cluster/42'),
+                      'slice' => Utils.resource('/slice/15')},
             'value' => {'baz' => 'quux'}}
 
   it 'should discover entrepot' do
@@ -75,7 +76,7 @@ describe 'Entrepot' do
  it 'should fetch values' do
    @api.op('/entrepot/store', ENTREPOT_JID, VALUE1)
    @api.op('/entrepot/store', ENTREPOT_JID, VALUE2)
-   result = @api.op('/entrepot/fetch', ENTREPOT_JID, 'key' => {'cluster' => res('/cluster/42')})
+   result = @api.op('/entrepot/fetch', ENTREPOT_JID, 'key' => {'cluster' => resource('/cluster/42')})
    result.should == [VALUE1, VALUE2]
  end
 
@@ -84,7 +85,7 @@ describe 'Entrepot' do
 #    @api.op('/entrepot/store', ENTREPOT_JID, VALUE2)
 #    result = @api.op('/entrepot/delete', ENTREPOT_JID, 'key' => VALUE2['key'])
 #    result.should == VALUE2
-#    result = @api.op('/entrepot/fetch', ENTREPOT_JID, 'key' => {'cluster' => res('/cluster/42')})
+#    result = @api.op('/entrepot/fetch', ENTREPOT_JID, 'key' => {'cluster' => resource('/cluster/42')})
 #    result.should == VALUE1
 #  end
 

@@ -47,6 +47,7 @@ end
 
 def run_agent(name)
   if !process_exists?(name)
+    puts("#{vagent} start -c #{File.dirname(__FILE__)}/config/#{name}.yml -b")
     system("#{vagent} start -c #{File.dirname(__FILE__)}/config/#{name}.yml -b")
     sleep 1
   end

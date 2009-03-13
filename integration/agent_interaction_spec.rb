@@ -27,6 +27,7 @@ def resource_list(*args)
 end
 
 describe 'Vertebra client' do
+  include Vertebra::Utils
 
   before(:all) do
     throw "ejabberd server must be running" unless EJABBERD.is_running?
@@ -91,7 +92,7 @@ describe 'Vertebra client' do
   end
 
   it 'get number list from specific slice and give a final result with integer values in the array' do
-    result = @api.op('/list/numbers', SLICE_AGENT[:jid], :resource => res('/mock'))
+    result = @api.op('/list/numbers', SLICE_AGENT[:jid], :resource => resource('/mock'))
     result.should == {'response' => [1,2,3]}
   end
 
