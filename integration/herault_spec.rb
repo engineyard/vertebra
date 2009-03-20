@@ -49,34 +49,20 @@ describe 'Herault' do
 
   HERAULT_JID = 'herault@localhost/herault'
 
-  it 'should not be discovered' do
-    result = @api.discover('/')
-    result['jids'].include?(HERAULT_JID).should == false
+  it 'should not include herault in discovery results' do
+    pending 'write me'
   end
 
-  it 'should advertise and unadvertise' do
-    resource = resource("/foo/bar")
-    # Make sure herault doesn't have any advertising already there for this resource.
-    @api.advertise_op([resource], 0)
-
-    @api.discover(resource)['jids'].should == []
-    @api.advertise_op([resource])
-    @api.discover(resource)['jids'].should == [CLIENT[:jid]]
-    @api.advertise_op([resource], 0)
-    @api.discover(resource)['jids'].should == []
+  it 'should include agents that advertise, but not agents that unadvertise' do
+    # NOTE: unadvertise simply means advertise with TTL 0
+    pending 'write me'
   end
 
-  it 'should discover all resources' do
-    @api.advertise_op(resource('/foo'))
-    warm_up do
-      result = @api.discover(resource('/'))['jids'].size.should == 1
-    end
+  it 'should include /foo/bar when asked to discover /foo' do
+    pending 'write me'
   end
 
-  it 'should expire resources' do
-    @api.unadvertise_op(resource('/foo'))
-    warm_up do
-      @api.discover(resource('/'))['jids'].size.should == 0
-    end
+  it 'should expire advertisements based on their TTL' do
+    pending 'write me'
   end
 end
