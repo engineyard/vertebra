@@ -1,6 +1,4 @@
-SUBDIRS = natter vertebra-erl
-DIST_SUBDIRS = $(SUBDIRS) vertebra-doc
-EXTRA_DIST = vertebra-rb vertebra-gem vertebra-xen
+EXTRA_DIST = vertebra-rb vertebra-erl vertebra-gem vertebra-xen natter
 
 rake = cd $(srcdir)/$(1) && $(RAKE) $(2)
 
@@ -9,11 +7,10 @@ dist-hook:
 	$(call clean,vertebra-gem)
 	$(call clean,vertebra-rb)
 	$(call clean,vertebra-xen)
+	$(call clean,vertebra-erl)
+	$(call clean,natter)
 
 .PHONY: vertebra-doc
-
-vertebra-doc:
-	$(MAKE) -C $(srcdir)/vertebra-doc
 
 .PHONY: install-vertebra-rb install-vertebra-gem
 
