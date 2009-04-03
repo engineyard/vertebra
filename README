@@ -82,7 +82,7 @@ and vertebra actors.
 
 ==== Vertebra Libraries
 
- * vertebra -- Core agent library for ruby.
+ * vertebra-rb -- Core agent library for ruby.
  * vertebra-erl -- Core agent library for erlang and core vertebra services.
 
 ==== Vertebra Actors
