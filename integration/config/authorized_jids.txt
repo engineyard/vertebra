@@ -1,1 +1,0 @@
-vertebra-client@localhost
