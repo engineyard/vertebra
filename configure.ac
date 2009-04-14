@@ -1,6 +1,6 @@
 # -*- Autoconf -*-
 AC_PREREQ(2.61)
-AC_INIT(vertebra, 0.4.5)
+AC_INIT(vertebra, 0.4.6)
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 
 # Ruby
