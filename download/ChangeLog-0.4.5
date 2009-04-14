@@ -1,0 +1,713 @@
+commit 08c7f2f6776e1d27a2ee072e1aa93ee438956a7e
+Author: Samuel Tesla <stesla@engineyard.com>
+Date:   Thu Apr 2 23:38:34 2009 -0500
+
+    Tweak README
+
+commit fb9b5ed89ddfdca92f487df8deecd82b3e047845
+Author: Samuel Tesla <stesla@engineyard.com>
+Date:   Thu Apr 2 23:34:39 2009 -0500
+
+    Update to latest vertebra-erl and vertebra-rb.
+
+    vertebra-erl:
+
+    commit cf6e7c84f6dfbf2e31f19c47e9db112ae292ec27
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Thu Apr 2 23:15:30 2009 -0500
+    
+        Updated readme with deprecation notice.
+
+    vertebra-rb:
+
+    commit c9be80dec3d90d333ed047b479914b5a639b7b4a
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Thu Apr 2 23:23:40 2009 -0500
+    
+        Updated README to remove references to vertebractl
+    
+    commit 95e07d48f69a05a2e0efb07a8683c6764b3c2b20
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Thu Apr 2 22:50:01 2009 -0500
+    
+        Added more methods to support building custom CLI tools.
+    
+    commit a3ea9388a8176c2768d5bd281031d319ef5fa987
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Thu Apr 2 11:36:46 2009 -0600
+    
+        Fix exception handling on actor dispatch.
+        Actors can now blow up, and the explosion is contained by the Vertebra bomb disposal unit, protecting the agent as a whole. The exception and the backtrace is returned in the response so one's own Exceptions and Explosions Forensics Unit can properly analyze what happened.
+    
+    commit a96599b5c01b963bb236bbc5ce2db13eea782c4a
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Thu Apr 2 09:44:54 2009 -0600
+    
+        Fixed protocol tests so that they no longer expect result packets to have sub elements.
+    
+    commit d4d30179ce24d1fac850d869de3798a6f6fe3862
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Thu Apr 2 09:38:51 2009 -0600
+    
+        Minimize IQ-results; some internals cleanup.
+        IQ-results are now fully minimized.  They depend on the PacketMemory to lookup what protocol state an IQ-result is for, eliminating the need for the IQ-result packet itself to carry anything more than the minimum info required by the RFC.  Also cleaned up inconsistent use of the java-ish get_attribute('foo')/set_attribute('foo','bar') versus the rubyish ['foo']/['foo']=bar syntax when setting attributes on an XMPP element.
+    
+    commit 207fe7a0554a427034c07f81c138784951fd3d17
+    Merge: 5535ffa... 375fc67...
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Wed Apr 1 10:47:17 2009 -0600
+    
+        Merge branch 'master' of git@github.com:engineyard/vertebra-rb
+    
+    commit 5535ffa12291510e46db01aa537212938b0f88b0
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Wed Apr 1 10:43:13 2009 -0600
+    
+        Modified protocol/agent code to use PacketMemory.
+    
+    commit bc1663c938d25152a0b215858ad43e5d7a146996
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Wed Apr 1 10:42:41 2009 -0600
+    
+        Modified the protocol mock so that it include PacketMemory.
+    
+    commit 48be4222547d2fc0dd4157bb8a51f54be47d4fcd
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Wed Apr 1 10:25:40 2009 -0600
+    
+        Added a class to encapsulate tracking of packets for duplicate suppression and retry.  Includes tests.
+    
+    commit 375fc675f2e22db7c9de2a6e05d91fac682a473c
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Tue Mar 31 12:31:34 2009 -0500
+    
+        Fix broken unit tests.
+        
+        Since the actor no longer just advertises the top-level resource, some of these tests had incorrect expectations.
+    
+    commit 1e2ca6caaa35f6e1e764490aa869bfc8c073c0a0
+    Author: Tim Carey-Smith <tim@spork.in>
+    Date:   Wed Apr 1 00:41:41 2009 +1300
+    
+        Do not provide the top-level resource for each op_type
+        
+        Allow an actor to provide zero resources
+        Log when an exception occurs
+        The actor doesn't need to provide the op_type
+        Log the number of actor candidates
+    
+    commit 3f6ee0afb196da960107595471698d6f924cfde0
+    Author: Tim Carey-Smith <tim@spork.in>
+    Date:   Tue Mar 31 21:27:09 2009 +1300
+    
+        Shift herault into the repo for maintainability
+    
+    commit cfa6baa334ecaf677b751f847ffe744892096505
+    Author: Tim Carey-Smith <tim@spork.in>
+    Date:   Tue Mar 31 21:00:13 2009 +1300
+    
+        Remove the old busy_jid spec and friends
+    
+    commit fa793484c252a7056b83c056a301bf5c75de930f
+    Author: Tim Carey-Smith <tim@spork.in>
+    Date:   Tue Mar 31 20:59:58 2009 +1300
+    
+        Remove all the agent integration code
+    
+    commit a8b14b79c79741028485fe2e36e782647d4f04ea
+    Author: Tim Carey-Smith <tim@spork.in>
+    Date:   Tue Mar 31 10:23:44 2009 +1300
+    
+        Do not attempt to fetch the JIDs from the response if there is _no_ response
+    
+    commit 0183a019694ffe012262af810a27592c5bc58004
+    Author: Tim Carey-Smith <tim@spork.in>
+    Date:   Tue Mar 31 10:22:56 2009 +1300
+    
+        Store the resources in args inside a Hash
+    
+    commit 09484d6511b6ae43e0d6d684b8832f4d39489d2d
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Tue Mar 31 11:15:06 2009 -0600
+    
+        Cleaned up IQ-results.
+    
+    commit 55aa39aa5506a835a0ab648ba3c4b216d7b4def5
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Tue Mar 31 11:12:07 2009 -0600
+    
+        Removed the busy_jid related test; no longer needed.
+    
+    commit d92b6aa02e3299098482dcaa9217e8ca0eecabbd
+    Merge: 8951372... 8c89bde...
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Mon Mar 30 09:51:31 2009 -0600
+    
+        Merge commit 'origin/tim-20091028'
+    
+    commit 895137213c3ccb6a8fc2aaa55546b2824b2d23ce
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Mon Mar 30 09:50:30 2009 -0600
+    
+        Yanked out the busy_jid stuff; not needed with the ruby herault.
+    
+    commit 8c89bde0bf3df8177c13ecefef399e791148a861
+    Author: Tim Carey-Smith <tim@spork.in>
+    Date:   Sat Mar 28 18:51:58 2009 +1300
+    
+        Change the Resource parsing to be more correct
+        
+        /foo < /bar == false
+        /foo > /bar == false
+    
+    commit 1a8bb9550ce6b8ca8235a19b142ee585b3f05b5e
+    Author: Tim Carey-Smith <tim@spork.in>
+    Date:   Sat Mar 28 18:50:52 2009 +1300
+    
+        Remove the bacon helpers
+    
+    commit 2dd1057be81b28c260221e0d30c588ea01c6e1da
+    Merge: 2a6f3bb... a9c46ce...
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Fri Mar 27 12:36:48 2009 -0600
+    
+        Merge branch 'master' of git@github.com:engineyard/vertebra-rb
+    
+    commit 2a6f3bbba6af8f869e6cfa4abf9d1909c9c9b232
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Fri Mar 27 12:22:56 2009 -0600
+    
+        New actor dispatch code breaks old actors.
+        The new code passes the operation as the first arg, and the options as the second arg.  The old actors expects just a single arg, though.
+        The dispatcher code has been modified to check the arity of the method first, and to make it's call accordingly, allowing all of the old actors to continue working without changes.
+    
+    commit 05bd6dc3e484716f92add54c3ecfb580de7fc8e4
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Fri Mar 27 10:13:36 2009 -0600
+    
+        Fixed Vertebra::Resource boolean comparisons so that they work when resources have different prefixes.
+    
+    commit c1419e9679b92f0764490d3e6d1b602f7f90e16f
+    Merge: 2bf7648... 8b39726...
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Fri Mar 27 10:11:16 2009 -0600
+    
+        Merge commit 'origin/cleanup-2'
+    
+    commit a9c46ce55c0936b8cea8eeeef046ef88cc91b401
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Wed Mar 25 01:40:10 2009 -0500
+    
+        Some refactors to make overriding behavior cleaner.
+    
+    commit ddaea974e54333264fa5cd34fbafbf98820cde43
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Tue Mar 24 12:39:45 2009 -0500
+    
+        Method got moved.
+    
+    commit 8b397261a4a32fa23ed17d8f98d1d78d44d8aa6e
+    Author: Tim Carey-Smith <tim@spork.in>
+    Date:   Tue Mar 24 22:14:33 2009 +1300
+    
+        Add warning to the final stanza
+    
+    commit 2bf76485ab11fc7e240bc1612171bf944f6a4c56
+    Merge: 59c0019... 9956f65...
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Mon Mar 23 23:01:51 2009 -0600
+    
+        Merge commit 'origin/cleanup-2'
+    
+    commit 59c0019958365dc994cf3fb172f329a05059a4d8
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Mon Mar 23 22:42:22 2009 -0600
+    
+        Don't want to blow up if returned jids happens to be nil.
+        Oops.  Forgot to commit this.
+    
+    commit 9956f658ad06b09168da895ac8ab6fb2fa783d5d
+    Author: Tim Carey-Smith <tim@spork.in>
+    Date:   Mon Mar 23 08:37:50 2009 +1300
+    
+        Refactor the stanza handling into their own classes
+    
+    commit ea396c86d567aabff34a124ceb63c423960d1536
+    Author: Tim Carey-Smith <tim@spork.in>
+    Date:   Sat Mar 21 20:36:38 2009 -0700
+    
+        Changes to allow a ruby herault to exist.
+        
+        - Actor methods now take 2 arguments: operation and options
+        - Discovery and Authorization can be disabled by setting the herault_jid
+          to nil
+        - The args of the discovery operation are now:
+            {'resources' => {'type' => "/op/type",
+                             'args' => ["/resource/in/args", ....]}}
+        - The response to the discovery is now:
+            {'response' => {'jids' => [..., ...]}}
+          This is consistent with the existing ruby responses
+
+commit 87de140280e5ad7397fd956487f4c703acb91c0d
+Author: Samuel Tesla <stesla@engineyard.com>
+Date:   Thu Apr 2 23:34:28 2009 -0500
+
+    Update build system for 0.4.5 release.
+    
+    * Remove vertebra-doc
+    * Do not configure or build natter or vertebra-erl from top level, but include them in the distribution.
+
+commit 6e595faf73e1aa4dadf7973c1678e8998c0d6675
+Author: Samuel Tesla <stesla@engineyard.com>
+Date:   Thu Apr 2 23:33:18 2009 -0500
+
+    Removed nearly useless integration tests.
+
+commit 06349dcb030358c7638a4d000bf265db0caeef70
+Author: Samuel Tesla <stesla@engineyard.com>
+Date:   Thu Apr 2 23:25:58 2009 -0500
+
+    Removed vertebra-doc from main dist.
+
+commit c5fc23d9a70aaf7e5e0eba6ec762deb8aa9d255c
+Author: Samuel Tesla <stesla@engineyard.com>
+Date:   Tue Mar 24 13:34:12 2009 -0500
+
+    Fix info about loudmouth-ruby bindings.
+
+commit 94dc7ff166513328cb37764d9c547764f855b97e
+Author: Samuel Tesla <stesla@engineyard.com>
+Date:   Fri Mar 20 17:02:42 2009 -0500
+
+    Update to latest vertebra-rb.
+    
+    commit 2b2a7f0e5db1b3808c8951310bacacecbee60151
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Fri Mar 20 13:25:13 2009 -0500
+    
+        Fixed specs.
+    
+        * Marked as pending the VertebraCLI tests that aren't actually testing anything.
+        * Moved keys_to_symbols onto Vertebra::Utils and moved its test.
+    
+    commit e01c1ec8fa91be36f0803e87f40a4b01ebe0894e
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Fri Mar 20 00:26:00 2009 -0500
+    
+        Bump version
+    
+    commit 6eaa3bc51ac5876fe2a2dde1746f31164e6d7468
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Fri Mar 20 00:13:57 2009 -0500
+    
+        Extracted out methods from parse_commandline so they can be overridden.
+    
+    commit d144992c8281c86c15fa3dbd99748bdc80e87798
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Thu Mar 19 23:33:49 2009 -0500
+    
+        Remove stale comment.
+    
+    commit 4da48d40996d1bd4fca52fe8f5856a85d9aa25b5
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Thu Mar 19 23:31:57 2009 -0500
+    
+        Change VertebraCLI.run to instantiate an instance and make the rest of the methods to instance methods.
+    
+    commit e04fbcf270d04be2073acff92347ab3040c75352
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Thu Mar 19 23:28:35 2009 -0500
+    
+        Refactor to pass arguments to VertebraCLI instead of using the global ones.
+    
+    commit c1da1fd0b675317d84c154cebd8e7e278731d158
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Thu Mar 19 23:22:22 2009 -0500
+    
+        Whitespace cleanup
+    
+    commit 910e1802326abe3ea665adfccc9937b8e9c08a7a
+    Author: Tim Carey-Smith <tim@spork.in>
+    Date:   Thu Mar 19 08:03:02 2009 -0700
+    
+        Update the README to reflect API changes
+    
+    commit 053500ff835fc38526465f29b72cd4c5271c88cf
+    Author: Tim Carey-Smith <tim@spork.in>
+    Date:   Thu Mar 19 07:28:31 2009 -0700
+    
+        Remove the dependency on SousChef
+    
+    commit 659765b9e047a9c74d9989a4e696aaa24185d24f
+    Author: Tim Carey-Smith <tim@spork.in>
+    Date:   Thu Mar 19 05:11:04 2009 -0700
+    
+        Improve the Agent#request method to support a block
+    
+        Alot of functionality is now on the Outcall
+        - Discovery, scattering and gathering
+        - raw_op() for Herault communications
+        - :single and :all scopes are implemented
+        - :direct scope is simply a raw_op
+    
+        Make the CLI able to specify key/value pairs
+    
+        Removed alot of unneeded ClientAPI code
+    
+    commit a6c593c0cdcc0c99b47312a01580881f4efc0c77
+    Author: Tim Carey-Smith <tim@spork.in>
+    Date:   Thu Mar 19 01:18:20 2009 -0700
+    
+        Start working towards a cleaner API between Agent and Client
+    
+        - Remove the Vertebra::Op object
+        - Rename the direct_op method to raw_op
+        - Generate the token in the request and use it for all raw_ops
+        - Remove discovery from CLI and API
+        - Rename Operation to Init
+        - Remove unused Element classes
+    
+    commit 6ec7075024a77379a3d13b0d8bbdd31c5fe31d53
+    Author: Tim Carey-Smith <tim@spork.in>
+    Date:   Wed Mar 18 20:46:16 2009 -0700
+    
+        Remove the old queue architecture
+    
+    commit df86f548253e5680c23c5b2fa9a5b670295786ca
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Fri Mar 20 09:25:04 2009 -0600
+    
+        Added an actor that just throws an exception.
+
+commit 1c0fa3ac041c1dd25475cf9de7fb9020b953def3
+Author: Samuel Tesla <stesla@engineyard.com>
+Date:   Fri Mar 20 17:02:02 2009 -0500
+
+    Update to latest vertebra-erl.
+    
+    commit 8e990595354f18608fd165b2b0c94a5f826e7263
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Fri Mar 20 16:01:24 2009 -0500
+    
+        Remove special case for cavalcade JID.
+    
+    commit 7f90f8291c6c581b38e8e31aa453e6c4cf3e5430
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Fri Mar 20 15:54:57 2009 -0500
+    
+        Toss old cavalcade into the bit bucket, as it is very bit-rotted.
+
+commit 977253387bbd1dea6e2ba5d8f377d4625807f532
+Author: Samuel Tesla <stesla@engineyard.com>
+Date:   Fri Mar 20 17:01:30 2009 -0500
+
+    Update tests to reflect API changes.
+    
+    * Removed cavalcade placeholder, since cavalcade is trashed.
+    * Marked as pending most of the integration tests.
+
+commit ae33d8a8c82314fb22c029888ec0f3c89fe14c28
+Author: Samuel Tesla <stesla@engineyard.com>
+Date:   Thu Mar 19 18:31:21 2009 -0500
+
+    Update to latest vertebra-rb.
+    
+    commit 1535e97c8c515b3cae66317231e723e162bc6a7b
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Wed Mar 18 13:22:37 2009 -0600
+    
+        Performance/efficiency/CPU usage fixes; warnings cleanup.
+        Added a method to enqueue a synapse only if it can't be done immediately (evaluation of conditons returned :deferred); otherwise it is executed immediately.
+        Changed the code that controls the timers so that it also adjusts the timer_quantum in the reactor.  The code also will wait a while before cycling from fast back to slow modes, to avoid cycling too quickly from slow to fast and back (which just slows things down).
+        Fixed a warning on the vertebra CLI caused by a lack of parens.
+    
+    commit 66db42cf6793a4dc06589be0393a9837c212e63c
+    Merge: 43d891c... 3313386...
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Tue Mar 17 14:02:43 2009 -0600
+    
+        Merge branch 'master' of git@github.com:engineyard/vertebra-rb
+    
+    commit 43d891ca679c731a15b3992647225576c0086438
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Tue Mar 17 14:01:32 2009 -0600
+    
+        Changed the timer intervals to try to reduce latency of requests when using the CLI tool.  Hopefully get more accurate timings that way.
+    
+    commit 33133867a827ae26842bd1d654da21252b24e41f
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Mon Mar 16 14:32:23 2009 -0500
+    
+        Fix a couple of regressions.
+    
+         * Don't crash if there's no ~/.vertebra/vertebra
+         * Display usage if no options are given.
+    
+    commit 7ce9065c3b25c380a7d9cfd102cd7b201e0b709b
+    Author: Tim Carey-Smith <tim@spork.in>
+    Date:   Fri Mar 13 13:11:30 2009 -0700
+    
+        Fix the specs to work with the new API
+    
+    commit 04d3870843c7e0fa2566856bf63366abfa4b4a57
+    Merge: 5507bf9... 03ec437...
+    Author: Tim Carey-Smith <tim@spork.in>
+    Date:   Fri Mar 13 13:07:42 2009 -0700
+    
+        Merge branch 'master' of git@github.com:engineyard/vertebra-rb
+    
+    commit 03ec437b1bb41806068652fba9578c30602da38f
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Fri Mar 13 14:40:01 2009 -0500
+    
+        Changed options parsing over to use optparse, also got config-file and CLI option cascade working correctly.
+    
+    commit b5f8ec30f33ed6b8fad14f96d382a36a5412e293
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Fri Mar 13 14:55:30 2009 -0500
+    
+        Fix broken spec and add one for the dispatcher fix.
+    
+    commit 5507bf968e460962677ec8ec54b37dd425d6a21b
+    Author: Tim Carey-Smith <tim@spork.in>
+    Date:   Fri Mar 13 01:14:44 2009 -0700
+    
+        Shift the can_provide? method into Actor and fix the specs for Dispatcher#candidates
+
+commit 8da4374d4ceb5836ad73696185ab3c60820358a1
+Author: Samuel Tesla <stesla@engineyard.com>
+Date:   Thu Mar 19 18:17:27 2009 -0500
+
+    Updated vertebra-gem.
+    
+    commit 256a02190455d9f9063de20bb3b8891888138d00
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Mon Mar 2 12:35:38 2009 -0600
+    
+        Bumped version
+
+commit 6c5c52ecc84f08ebe7fab848c26b6dc3c896874c
+Author: Samuel Tesla <stesla@engineyard.com>
+Date:   Thu Mar 19 18:16:45 2009 -0500
+
+    Update to latest vertebra-erl.
+    
+    commit 53a54118cd0c8eadde72473b6dfa21a9d8a30e27
+    Author: Kevin A. Smith <ksmith@engineyard.com>
+    Date:   Tue Mar 17 16:13:08 2009 -0400
+    
+        * Adding specs and comments
+
+commit 4990ee262c1570b3f1f7bfb9f56639cf8936be8d
+Author: Samuel Tesla <stesla@engineyard.com>
+Date:   Thu Mar 19 17:42:26 2009 -0500
+
+    Update to latest vertebra-doc.
+
+commit 57c95955e51172c5e8bcdc96ff3f78faacd0445e
+Author: Samuel Tesla <stesla@engineyard.com>
+Date:   Thu Mar 19 17:42:06 2009 -0500
+
+    Update to latest natter.
+    
+    commit 1950e83d3332c03c27e40225ec0f262e97ffb295
+    Author: Kevin A. Smith <ksmith@engineyard.com>
+    Date:   Wed Mar 11 10:27:11 2009 -0400
+    
+        * Fixed mis-spelling of io:format
+
+commit 06eba6175d3d44465b47c49d84991f1d7253eda3
+Author: Tim Carey-Smith <tim@spork.in>
+Date:   Fri Mar 13 00:15:02 2009 -0700
+
+    Update the vertebra ruby submodule
+
+commit b406b463d0f93a294610ce7e8fb651644c1aec58
+Author: Tim Carey-Smith <tim@spork.in>
+Date:   Fri Mar 13 00:12:32 2009 -0700
+
+    Fix the integration specs to work cleaner code
+
+commit 573b359d7448b3a26aadbea38b7a9a47df4cf49f
+Author: Samuel Tesla <stesla@engineyard.com>
+Date:   Thu Mar 12 17:15:19 2009 -0500
+
+    Changed cavalcade test to be pending instead of faiing.
+
+commit 6433a8bd0266a4084258d93246d851b1df47b6d9
+Author: Samuel Tesla <stesla@engineyard.com>
+Date:   Thu Mar 12 16:54:24 2009 -0500
+
+    Updated to latest vertebra.rb.
+    
+    commit 5c1acdc58daa3f562e93c7e82bc2ffaa3478c5e9
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Thu Mar 12 16:50:30 2009 -0500
+    
+        Made scope an attribute on <op/>
+    
+    commit 7da35e2a9e3da8e26d0cbb1e1a6e98adde3ca388
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Wed Mar 11 14:16:21 2009 -0500
+    
+        Removed trailing whitespace.
+    
+    commit a20ff5d3c7ba05143f85454d95454c99a03f8856
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Wed Mar 11 14:08:07 2009 -0500
+    
+        Remove dead code from spec
+    
+    commit c6ff0c9698486a2446b90a36c80f1a7164080d4d
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Wed Mar 11 22:19:04 2009 -0600
+    
+        Added determine_scope back, and put scope back into the args so that the agent has access to it. Commented out what looked like an unneeded timer in the CLI.
+    
+    commit e4fb7887b2f87e2b02b22421ed892fe5274bc183
+    Author: Tim Carey-Smith <tim@spork.in>
+    Date:   Tue Mar 10 19:55:22 2009 -0700
+    
+        Make the sous chef code more readable and make the default case convert to a resource which stops malformed resources getting added as an argument
+    
+    commit 10d2845ea71f9cb05ea67c94f21f038490d083ce
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Wed Mar 11 12:59:30 2009 -0500
+    
+        Star the args getting passed to SousChef.prepare so that they get processed correctly.
+    
+    commit 39159f2a4e3841e05cd9fb74ffbef16d75f0fdfc
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Wed Mar 11 12:55:56 2009 -0500
+    
+        Fix typo.
+    
+    commit 2b781f5244a2968825ea59f729fb6daad5fa4aaf
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Wed Mar 11 12:51:05 2009 -0500
+    
+        Added SousChef to Agent#direct_op
+    
+    commit e986f88b6891369d1de0505d5befa7662a8595e1
+    Merge: 197cd0b... 61276fc...
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Wed Mar 11 10:57:35 2009 -0600
+    
+        Merge branch 'master' of git@github.com:engineyard/vertebra-rb
+    
+    commit 197cd0b2a7f8837852972e62497233edf4daaad8
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Wed Mar 11 10:56:16 2009 -0600
+    
+        Minor bug fixes and API cleanups.
+        Added a SIGUSR1 triggerable debugger that dumps synapses.  Removed a little redundancy from the API.  Fixed some of the broken integer math for the EM timers.
+    
+    commit 88056fb6471715f7e24b53cac89bdf8ec5b0e5c6
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Wed Mar 11 10:54:05 2009 -0600
+    
+        Added a test to make sure it's getting/setting the jid resource right.
+    
+    commit 61276fc522e783f612dfd957fa0bbc16626c6017
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Tue Mar 10 22:56:57 2009 -0500
+    
+        Delete some stale tests, and fix some fresh ones to pass cooked args to Vertebra::Op.new
+    
+    commit 8bd00254eae73d585c1b4d9327cce22153f05fae
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Tue Mar 10 20:53:04 2009 -0500
+    
+        Remove dead code, and ensure everything below Agent#request expects cooked args.
+    
+    commit 4455a7d4fa80329ad7837f3fd7cf1faed74e3fca
+    Author: Samuel Tesla <stesla@engineyard.com>
+    Date:   Tue Mar 10 18:26:30 2009 -0500
+    
+        Added Vertebra::SousChef to cook args in Agent#request.
+    
+    commit 083dfb4bad77e4c35a2e493651c18518ba189aab
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Fri Mar 6 19:45:34 2009 -0700
+    
+        Commented out a "raise" that may be unnecessary.
+    
+    commit 773e0f7744fd168a5606548f7ddbb0b3f4edf76a
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Thu Mar 5 15:34:33 2009 -0700
+    
+        Fix so that ops that don't return results properly finish.
+    
+    commit 2c76d08f1430791ce1fb8af2f980b71f2b805354
+    Author: Kirk Haines <khaines@engineyard.com>
+    Date:   Thu Mar 5 13:34:45 2009 -0700
+    
+        Merged Raphael's eventmachine related work, and added our deferrable back.
+        Raphael Simon's work to put glib into its own thread, and to eliminate the dependency on ruby::gnome2 from Vertebra was merged.
+        Also added our deferrable implementation back, as it offers a slightly nicer API than the EM standard one.
+    
+    commit 6b09b6a25e6b491b53c19f07cd40bfb41f079c48
+    Author: raphael <simon.raphael@gmail.com>
+    Date:   Tue Mar 3 16:45:41 2009 -0800
+    
+        Use new evented Loudmouth Ruby binding and use EventMachine instead of GLib.
+
+commit b4be9e0fd6f49bd8dc327026d13f05b8d8c8f31a
+Author: Samuel Tesla <stesla@engineyard.com>
+Date:   Thu Mar 12 16:53:29 2009 -0500
+
+    Update to latest vertebra-gem.
+
+commit 82e1bc6bae727715b6a4c7a423a12fa1f1c22ded
+Author: Samuel Tesla <stesla@engineyard.com>
+Date:   Thu Mar 12 16:52:47 2009 -0500
+
+    Update to latest vertebra-erl.
+    
+    commit 27c7cd949a5b273dc90b5a60b3561379d353cc03
+    Author: Kevin A. Smith <ksmith@engineyard.com>
+    Date:   Tue Mar 10 13:28:09 2009 -0400
+    
+        * Fixing integer -> list conversion problem with new_packet_id/0
+    
+    commit 55c6f2a7af49142e3feaaffdf7fa0e9d04b49ed9
+    Author: Kevin A. Smith <ksmith@engineyard.com>
+    Date:   Tue Mar 10 13:03:09 2009 -0400
+    
+        * I'm an idiot. It's called erlang:put not erlang:store. Sheesh.
+    
+    commit 4ce5c79b1ccb3482c23a3551d75725a15c404e9a
+    Author: Kevin A. Smith <ksmith@engineyard.com>
+    Date:   Tue Mar 10 12:18:58 2009 -0400
+    
+        * Fixed typo when starting crypto
+    
+    commit ebd18b1094f6b2de710dc289efa4e92542475037
+    Author: Kevin A. Smith <ksmith@engineyard.com>
+    Date:   Mon Mar 9 21:04:35 2009 -0400
+    
+        * Trying out a fix for bogus dup IQ ids
+    
+    commit d0f2566c2832edee36c39674b7e8aab80bfadd7e
+    Author: Kevin A. Smith <ksmith@engineyard.com>
+    Date:   Fri Mar 6 15:33:20 2009 -0500
+    
+        * Fixed case where vertebra_xmpp didn't handle timeouts on sends
+
+commit 05fcc4b046f420a361b1f5236743156d0d8216d9
+Author: Samuel Tesla <stesla@engineyard.com>
+Date:   Thu Mar 12 16:51:24 2009 -0500
+
+    Update to latest vertebra-doc.
+
+commit ce459376d4137fbc7e1f02ecead522046dbc2885
+Author: Samuel Tesla <stesla@engineyard.com>
+Date:   Thu Mar 5 15:17:38 2009 -0600
+
+    Updated readme and removed stale loudmouth patch.
+
+commit bbaaadb26bcd1c50cf09bc665790feef0d7cc922
+Author: Samuel Tesla <stesla@engineyard.com>
+Date:   Wed Mar 4 18:57:40 2009 -0600
+
+    Update to latest code in all repositories.
