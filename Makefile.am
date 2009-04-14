@@ -31,3 +31,8 @@ uninstall-vertebra-gem:
 	$(call rake,vertebra-gem,uninstall)
 
 uninstall-local: uninstall-vertebra-gem uninstall-vertebra-rb
+
+.PHONY: ChangeLog
+ChangeLog: OLD_VERSION=`git describe --abbrev=0`
+ChangeLog:
+	git log --no-merges $(OLD_VERSION)..HEAD > $(srcdir)/ChangeLog

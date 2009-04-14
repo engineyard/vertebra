@@ -15,3 +15,4 @@ ltmain.sh
 missing
 .DS_Store
 *.dump
+ChangeLog
