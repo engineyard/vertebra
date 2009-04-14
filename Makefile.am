@@ -1,4 +1,4 @@
-EXTRA_DIST = vertebra-rb vertebra-erl vertebra-gem vertebra-xen natter
+EXTRA_DIST = vertebra-rb vertebra-erl vertebra-gem natter
 
 rake = cd $(srcdir)/$(1) && $(RAKE) $(2)
 
